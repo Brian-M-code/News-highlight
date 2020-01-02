@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the most Trusted and Timely News website </title>
+        {% endif %}
+    </head>
+
+    <body>
+        <!--Content block-->
+        {% block content %}
+
+        {% endblock %}
+
+    </body>
+
+</html>
