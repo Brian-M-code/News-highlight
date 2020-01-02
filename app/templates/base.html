@@ -11,6 +11,48 @@
     </head>
 
     <body>
+         <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #000 ;font-size:26px;font-weight:Bold">
+            <a class="navbar-brand" href="/" id="brand" style="font-family: 'Abril Fatface', cursive;"><i
+                    class="far fa-newspaper"></i> The NewsHighlight</a>
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"style="font-size:24px;font-weight:Bold">Categories</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/category/{{categories[0]}}">Business <i
+                                    class="fas fa-briefcase"></i></a>
+                            <a class="dropdown-item" href="/category/{{categories[1]}}">Entertainment <i
+                                    class="fas fa-tv"></i></a>
+                            <a class="dropdown-item" href="/category/{{categories[2]}}">General <i
+                                    class="fab fa-hacker-news"></i></a>
+                            <a class="dropdown-item" href="/category/{{categories[3]}}">Health <i
+                                    class="fas fa-medkit"></i></a>
+                            <a class="dropdown-item" href="/category/{{categories[4]}}">Science <i
+                                    class="fas fa-flask"></i></a>
+                            <a class="dropdown-item" href="/category/{{categories[5]}}">Sports <i
+                                    class="fas fa-football-ball"></i></a>
+                            <a class="dropdown-item" href="/category/{{categories[6]}}">Technology <i
+                                    class="fas fa-sim-card"></i></a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+            </div>
+        </nav>
+        <!--/.Navbar-->
+    
         <!--Content block-->
         {% block content %}
 
