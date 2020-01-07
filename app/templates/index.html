@@ -1,66 +1,60 @@
-{%extends "base.html"%}
-{%block content%}
-<!-- News jumbotron -->
-<br><br>
-<!-- Jumbotron -->
-<div class="card card-image"
-    style="background-image: url(https://picsum.photos/2560/500?grayscale); background-repeat:no-repeat">
-    <div class="text-white text-center rgba-stylish-strong py-5 px-4">
-        <div class="py-5">
-            <h2 class="h2 text-white animated heartBeat" style="font-family: 'Abril Fatface', cursive;"><i
-                    class="far fa-newspaper"></i> News World</h2>
-            <h5 class="card-title h5 my-4 py-2">Be Updated</h5>
-            <p class="mb-4 pb-2 px-md-5 mx-md-5"style="font-size:30px; font-weight:bol">Get  top news headlines.. Made using the NewsAPI.</p>
-            
-        </div>
-    </div>
-</div>
- <div id= "bb"
-  style="background-image: url(https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjQ6fPA-vDmAhVpDWMBHWJxBTcQjRx6BAgBEAQ&url=https%3A%2F%2Funsplash.com%2Fwallpapers&psig=AOvVaw3cLyVqbKVO2gYYilDjiGwr&ust=1578468201395716);background-size:cover; background-repeat:no-repeat; background-attachment:fixed">
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4">
-            <br>
-            
-            <h4 class="text-center"style ="font-weight:Bold;color:white"><strong>News Sources  <i class="fas fa-sort-alpha-down"></i></strong></h4>
-            <div class="list-group list-group-flush">
-                {%for source in sources%}
-                <a href="/source/{{source.id}}" class="list-group-item list-group-item-action">{{source.name}}</a>
-                {%endfor%}
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+
+<!-- Content block -->
+{% block content %}
+    <div class="container-fluid">
+
+            <!-- general news -->
+            <h3> General news</h3>
+            <div class="row">
+                {{ macro.displayNews(General)}}
             </div>
-        </div>
-        <div class="col-lg-8">
-            <br>
-            <h4 class="text-center"style ="font-weight:Bold;color:white"><strong>Trending World News  <i class="fas fa-globe-americas"></i></strong></h4>
-            {%for article in top_news%}
-            <div class="jumbotron text-center hoverable p-4">
-                <div class="row">
-                    <div class="col-md-6 offset-md-1 mx-3 my-3">
-                        <div class="view overlay">
-                            <img src="{{article.img}}" class="img-fluid"
-                                alt="Sample image for first version of blog listing">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-5 text-md-left ml-3 mt-3">
-                        </a>
-                        <h4 class="h4 mb-4">{{article.title}}</h4>
-                        {%if article.content%}
-                            <p class="font-weight-normal">{{article.content | truncate(120)}}</p>
-                        {%endif%}
-                        <p class="font-weight-normal">by <a><strong>{{article.author}}</strong></a>, {{article.date[:10]}}
-                        </p>
-                        <a href="{{article.url}}" target="_blank" style="color: #fff;">
-                            <button style="background-color: blue;" class="btn">Read More  <i class="fas fa-link"></i></button>
-                        </a>
-                    </div>
-                </div>
+                
+                <hr>
+            <!---Business news-->
+            <h3> Business news</h3>
+            <div class="row">
+                {{ macro.displayNews(Business)}}                
             </div>
-            {%endfor%}
-        </div>
-        </div>
+
+            <!--Entertainment news-->
+            <h3> Entertainment news</h3>
+            <div class="row">
+                {{ macro.displayNews(Entertainment)}}
+            </div>
+<hr>
+            <!---sports news-->
+            <h3> Sports news</h3>
+            <div class="row">
+                {{ macro.displayNews(Sports)}}
+            </div>
+<hr>
+            <!---Technology news--->
+            <h3> Technology news</h3>
+            <div class="row">
+                {{ macro.displayNews(Technology)}}
+            </div>
+<hr>            
+            <!--Science news-->
+            <h3> Science news</h3>
+            <div class="row">
+                {{ macro.displayNews(Science)}}
+            </div>
+<hr>
+            <!---Health news--->
+            <h3> Health news</h3>
+            <div class="row">
+                {{ macro.displayNews(Health)}}
+            </div>
+
     </div>
-</div>
-{%endblock%}
+{% endblock%}
+
+
+
+
+
+
+

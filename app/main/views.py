@@ -1,72 +1,38 @@
-from flask import render_template
+from flask import render_template, redirect, url_for, request
 from . import main
-from ..requests import get_top_news ,get_top_news_by_source, get_sources, get_news_by_category, search_news
+from ..models import Sources
+from ..request import get_sources, get_articles
 
-@main.route("/")
+
+@main.route('/')
 def index():
-    top_news = get_top_news()
-    news_source = get_sources()
-    news = get_top_news()
-    categories = ["business",
-                "entertainment",
-                "general",
-                "health",
-                "science",
-                "sports",
-                "technology"
-                ]
-    return render_template("index.html", 
-                            top_news = top_news,
-                            sources = news_source,
-                            news = news,
-                            categories = categories)
 
-@main.route("/source/<source>")
-def source(source):
-    top_news_by_source = get_top_news_by_source(source)
-    news_source = get_sources()
-    categories = ["business",
-                "entertainment",
-                "general",
-                "health",
-                "science",
-                "sports",
-                "technology"
-                ]
-    return render_template("source.html",
-                            sources = top_news_by_source,
-                            news_source = news_source,
-                            categories = categories,
-                            source = source)
+    # getting general news
 
-@main.route("/category/<category>")
-def category(category):
-    news_category = get_news_by_category(category)
-    categories = ["business",
-                "entertainment",
-                "general",
-                "health",
-                "science",
-                "sports",
-                "technology"
-                ]
-    return render_template("category.html",
-                            news_category = news_category,
-                            categories = categories,
-                            category = category)
+    general_news = get_sources('general')
+    business_news = get_sources('business')
+    entertainment_news = get_sources('entertainment')
+    sports_news = get_sources('sports')
+    technology_news = get_sources('technology')
+    science_news = get_sources('science')
+    health_news = get_sources('health')
 
-@main.route("/search/<query>")
-def search(query):
-    search_articles = search_news(query)
-    categories = ["business",
-                "entertainment",
-                "general",
-                "health",
-                "science",
-                "sports",
-                "technology"
-                ]
-    return render_template("search.html",
-                            search_articles = search_articles,
-                            categories = categories)
+
+    title = 'Home-Best News Update Site'
+
+    return render_template('index.html', title=title, General=general_news, Business=business_news,
+                           Entertainment=entertainment_news, Sports=sports_news, Technology=technology_news,
+                           Science=science_news, Health=health_news)
+
+
+@main.route('/articles/<source_id>&<int:per_page>')
+def articles(source_id, per_page):
+    '''
+    Function that returns articles based on their sources
+    '''
+
+    news_source = get_articles(source_id, per_page)
+    title = f'{source_id} | All Articles'
+    return render_template('articles.html', title=title, name=source_id, news=news_source)
+
 
