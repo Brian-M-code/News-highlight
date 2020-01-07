@@ -1,0 +1,42 @@
+{%extends "base.html"%}
+{%block content%}
+
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <br>
+            <h3 class="text-center" style="text-transform: uppercase; font-family: 'Abril Fatface', cursive;" id="category"><strong>{{category}}</strong></h3>
+            <hr>
+            {%for category in news_category%}
+            <div class="jumbotron text-center hoverable p-4">
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 mx-3 my-3">
+                        <div class="view overlay">
+                            <img src="{{category.img}}" class="img-fluid"
+                                alt="Sample image for first version of blog listing">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-md-left ml-3 mt-3">
+                        </a>
+                        <h4 class="h4 mb-4">{{category.title}}</h4>
+                        {%if category.content%}
+                            <p class="font-weight-normal">{{category.content | truncate(120)}}</p>
+                        {%endif%}
+                        <p class="font-weight-normal">by <a><strong>{{category.author}}</strong></a>, {{category.date[:10]}}
+                        </p>
+                        <a href="{{category.url}}" target="_blank" style="color: #fff;">
+                            <button style="background-color: #000;" class="btn">Read More  <i class="fas fa-link"></i></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+
+{%endblock%}
